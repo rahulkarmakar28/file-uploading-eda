@@ -26,3 +26,14 @@ export const generateSignedUrl = async (userId: string) => {
         folder: `${process.env.FOLDER_NAME}/file-upload/useruploads/${userId}`,
     }
 }
+
+export const validateCloudinarySignature = (timestamp: number, signature: string, payload: string): boolean => {
+    // Check if the timestamp is valid
+    const currentTimestamp = Math.round(new Date().getTime() / 1000);
+    if (Math.abs(currentTimestamp - timestamp) > 59 * 60) {
+        return false;
+    }
+    // Validate the Cloudinary signature
+    const isVerified = v2.utils.verifyNotificationSignature(payload, timestamp, signature, process.env.API_SECRET);
+    return isVerified;
+};

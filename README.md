@@ -61,15 +61,6 @@ POST /wh/verify
 #### Description
 Cloudinary sends a webhook after a successful upload, allowing the server to save the media URL in the database.
 
-#### Response Body (Sent by Cloudinary)
-```json
-{
-    "public_id": "unique-file-id",
-    "secure_url": "https://res.cloudinary.com/...",
-    "original_filename": "uploaded-file-name",
-    "userId": "userid"
-}
-```
 
 ## Deployment
 This API is deployed on **Render** and can be accessed at:
